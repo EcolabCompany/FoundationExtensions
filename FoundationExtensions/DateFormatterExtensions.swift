@@ -5,7 +5,6 @@ extension DateFormatter {
 
     public convenience init(dateFormat: String, timeZone: TimeZone = TimeZone.current) {
         self.init()
-
         self.dateFormat = dateFormat
         self.timeZone = timeZone
     }

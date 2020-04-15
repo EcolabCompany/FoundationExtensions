@@ -9,7 +9,7 @@ public func property<Root, Value>(
     _ keyPath: WritableKeyPath<Root, Value>
 ) -> (@escaping (Value) -> Value)
   -> (Root) -> Root {
-    return { update in
+     { update in
         { root in
             var copy = root
             copy[keyPath: keyPath] = update(copy[keyPath: keyPath])
@@ -28,10 +28,8 @@ public func property<Root, Value>(
 public func over<Root, Value>(
   _ keyPath: WritableKeyPath<Root, Value>,
   _ update: @escaping (Value) -> Value
-  )
-  -> (Root) -> Root {
-
-    return property(keyPath)(update)
+) -> (Root) -> Root {
+    property(keyPath)(update)
 }
 
 
@@ -41,11 +39,9 @@ public func over<Root, Value>(
 /// - Returns: A mutable setter function.
 public func mutateProperty<Root, Value>(
   _ keyPath: WritableKeyPath<Root, Value>
-  )
-  -> (@escaping (inout Value) -> Void)
+) -> (@escaping (inout Value) -> Void)
   -> (inout Root) -> Void {
-
-    return { update in
+    { update in
       { root in
         update(&root[keyPath: keyPath])
       }
@@ -61,10 +57,8 @@ public func mutateProperty<Root, Value>(
 public func mutateOver<Root, Value>(
   _ keyPath: WritableKeyPath<Root, Value>,
   _ update: @escaping (inout Value) -> Void
-  )
-  -> (inout Root) -> Void {
-
-    return mutateProperty(keyPath)(update)
+) -> (inout Root) -> Void {
+    mutateProperty(keyPath)(update)
 }
 
 /// Produces an immutable setter function for a given key path and constant value.
@@ -78,7 +72,7 @@ public func set<Root, Value>(
     _ keyPath: WritableKeyPath<Root, Value>,
     _ value: Value
 ) -> (Root) -> Root {
-        return property(keyPath) ({ _ in value })
+    property(keyPath) ({ _ in value })
 }
 
 
@@ -92,13 +86,13 @@ public func mutate<Root, Value>(
     _ keyPath: WritableKeyPath<Root, Value>,
     _ value: Value
 ) -> (inout Root) -> Void {
-    return { root in
+    { root in
         root = set(keyPath, value)(root)
     }
 }
 
 public func get<Root, Value>(_ kp: KeyPath<Root, Value>) -> (Root) -> Value {
-    return { root in
+    { root in
         root[keyPath: kp]
     }
 }

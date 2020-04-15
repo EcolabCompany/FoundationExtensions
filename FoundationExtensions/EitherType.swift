@@ -62,6 +62,6 @@ public enum Either<A, B>: EitherType {
 extension Either where A == B {
     
     public var value: A {
-        return left ?? right!
+        left ?? right!
     }
 }
