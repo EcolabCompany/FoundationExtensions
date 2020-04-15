@@ -10,10 +10,10 @@ extension DateComponentsFormatter {
 
 
     public func string(minutes: Int) -> String? {
-        return self.string(from: TimeInterval(minutes * 60))
+        self.string(from: TimeInterval(minutes * 60))
     }
 
     public func string(minutes: Double) -> String? {
-        return self.string(from: TimeInterval(minutes * 60))
+        self.string(from: TimeInterval(minutes * 60))
     }
 }

@@ -16,7 +16,7 @@ extension Array {
     }
     
     public func reduce<Result>(_ nextPartialResult: @escaping (Result, Element) -> Result) -> (Result) -> Result {
-        return { result in
+        { result in
             self.reduce(result, nextPartialResult)
         }
     }
