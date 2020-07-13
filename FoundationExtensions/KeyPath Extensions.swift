@@ -90,9 +90,3 @@ public func mutate<Root, Value>(
         root = set(keyPath, value)(root)
     }
 }
-
-public func get<Root, Value>(_ kp: KeyPath<Root, Value>) -> (Root) -> Value {
-    { root in
-        root[keyPath: kp]
-    }
-}
