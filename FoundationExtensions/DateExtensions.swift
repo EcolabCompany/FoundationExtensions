@@ -24,6 +24,12 @@ extension Date {
     }
 
 
+    public static func removeTime(from date: Date) -> Date {
+        let calendar = Calendar.autoupdatingCurrent
+        return calendar.date(from: calendar.dateComponents([.year, .month, .day], from: date))!
+    }
+
+
     ///Returns an optional `NSDate` from a giving string with a specified date format.
     /// - parameter string: A date represented as a string.
     /// - parameter format: The format the date is represented as.
@@ -61,4 +67,5 @@ extension Date {
      public func toString(dateFormat: String) -> String {
         DateFormatter(dateFormat: dateFormat).string(from: self)
     }
+
 }
