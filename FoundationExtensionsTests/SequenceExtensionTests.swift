@@ -34,7 +34,7 @@ private func == (left: HashableTest, right: HashableTest) -> Bool {
 
 class SequenceExtensionTests: XCTestCase {
 
-    func testUniqueFiltersOutDuplicatesForEquatable() {
+    func test_uniqueFiltersOutDuplicatesForEquatable() {
         let array = [EquatableTest(value: "Value1"), EquatableTest(value: "Value2"), EquatableTest(value: "Value2"), EquatableTest(value: "Value3")]
 
         let uniqueArray = array.unique()
@@ -48,7 +48,7 @@ class SequenceExtensionTests: XCTestCase {
     }
 
 
-    func testUniqueFiltersOutDuplicatesForHashable() {
+    func test_uniqueFiltersOutDuplicatesForHashable() {
         let array = [HashableTest(value: "Value1"), HashableTest(value: "Value2"), HashableTest(value: "Value2"), HashableTest(value: "Value3")]
 
         let uniqueArray = array.unique()
@@ -59,6 +59,20 @@ class SequenceExtensionTests: XCTestCase {
         XCTAssertTrue(uniqueValues.contains("Value1"))
         XCTAssertTrue(uniqueValues.contains("Value2"))
         XCTAssertTrue(uniqueValues.contains("Value3"))
+    }
+    
+    
+    func test_uniqueByFiltersOutDuplicatesKeepingOrdering() {
+        let array = [HashableTest(value: "Value2"), HashableTest(value: "Value3"), HashableTest(value: "Value1"), HashableTest(value: "Value3")]
+
+        let uniqueArray = array.unique(by: \.value)
+
+        XCTAssertEqual(uniqueArray.count, 3)
+
+        let uniqueValues = uniqueArray.map { return $0.value }
+        XCTAssertTrue(uniqueValues[0] == "Value2")
+        XCTAssertTrue(uniqueValues[1] == "Value3")
+        XCTAssertTrue(uniqueValues[2] == "Value1")
     }
 
 
