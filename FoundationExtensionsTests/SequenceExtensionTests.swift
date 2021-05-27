@@ -34,7 +34,7 @@ private func == (left: HashableTest, right: HashableTest) -> Bool {
 
 class SequenceExtensionTests: XCTestCase {
 
-    func test_uniqueFiltersOutDuplicatesForEquatable() {
+    func test_unique_filtersOutDuplicatesForEquatable() {
         let array = [EquatableTest(value: "Value1"), EquatableTest(value: "Value2"), EquatableTest(value: "Value2"), EquatableTest(value: "Value3")]
 
         let uniqueArray = array.unique()
@@ -48,7 +48,7 @@ class SequenceExtensionTests: XCTestCase {
     }
 
 
-    func test_uniqueFiltersOutDuplicatesForHashable() {
+    func test_unique_filtersOutDuplicatesForHashable() {
         let array = [HashableTest(value: "Value1"), HashableTest(value: "Value2"), HashableTest(value: "Value2"), HashableTest(value: "Value3")]
 
         let uniqueArray = array.unique()
@@ -62,7 +62,7 @@ class SequenceExtensionTests: XCTestCase {
     }
     
     
-    func test_uniqueByFiltersOutDuplicatesKeepingOrdering() {
+    func test_uniqueBy_filtersOutDuplicatesKeepingOrdering() {
         let array = [HashableTest(value: "Value2"), HashableTest(value: "Value3"), HashableTest(value: "Value1"), HashableTest(value: "Value3")]
 
         let uniqueArray = array.unique(by: \.value)
