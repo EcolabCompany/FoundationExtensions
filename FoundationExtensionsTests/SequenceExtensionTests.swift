@@ -41,7 +41,7 @@ class SequenceExtensionTests: XCTestCase {
 
         XCTAssertEqual(uniqueArray.count, 3)
 
-        let uniqueValues = uniqueArray.map { return $0.value }
+        let uniqueValues = uniqueArray.map(\.value)
         XCTAssertTrue(uniqueValues.contains("Value1"))
         XCTAssertTrue(uniqueValues.contains("Value2"))
         XCTAssertTrue(uniqueValues.contains("Value3"))
@@ -69,7 +69,7 @@ class SequenceExtensionTests: XCTestCase {
 
         XCTAssertEqual(uniqueArray.count, 3)
 
-        let uniqueValues = uniqueArray.map { return $0.value }
+        let uniqueValues = uniqueArray.map(\.value)
         XCTAssertTrue(uniqueValues[0] == "Value2")
         XCTAssertTrue(uniqueValues[1] == "Value3")
         XCTAssertTrue(uniqueValues[2] == "Value1")
