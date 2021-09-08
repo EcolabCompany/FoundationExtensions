@@ -1,18 +1,13 @@
 import Foundation
 
 
-public func filter<X>(_ f: @escaping (X) -> Bool) -> ([X]) -> [X] {
-    { xs in xs.filter(f) }
-}
-
-
-public func map<A, B>(_ f: @escaping (A) -> B) -> ([A]) -> [B] {
-    { xs in xs.map(f) }
-}
-
-
 public func compactMap<A, B>(_ f: @escaping (A) -> B?) -> ([A]) -> [B] {
     { xs in xs.compactMap(f) }
+}
+
+
+public func filter<X>(_ f: @escaping (X) -> Bool) -> ([X]) -> [X] {
+  { xs in xs.filter(f) }
 }
 
 
@@ -25,6 +20,10 @@ public func forEach<X>(_ f: @escaping (X) -> Void) -> ([X]) -> Void {
     { xs in xs.forEach(f) }
 }
 
+
+public func map<A, B, S: Sequence>(_ f: @escaping (A) -> B) -> (S) -> [B] where S.Element == A {
+  { xs in xs.map(f) }
+}
 
 public func reduce<X, Result>(
     _ initialValue: Result,
@@ -42,5 +41,11 @@ public func reduce<Element, Result>(_ nextPartialResult: @escaping (Result, Elem
             array.reduce(result, nextPartialResult)
         }
     }
-    
+}
+
+
+public func sorted<S: Sequence>(by areInIncreasingOrder: @escaping (S.Element, S.Element) -> Bool) -> (S) -> [S.Element] {
+  { xs in
+    xs.sorted(by: areInIncreasingOrder)
+  }
 }
