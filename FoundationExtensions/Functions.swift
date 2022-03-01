@@ -44,6 +44,15 @@ public func reduce<Element, Result>(_ nextPartialResult: @escaping (Result, Elem
 }
 
 
+public func reduce<X, Result>(
+  into initialResult: Result,
+  _ updateAccumulatingResult: @escaping (inout Result, X) -> ()) -> ([X])-> Result {
+    { xs in
+      xs.reduce(into: initialResult, updateAccumulatingResult)
+    }
+  }
+
+
 public func sorted<S: Sequence>(by areInIncreasingOrder: @escaping (S.Element, S.Element) -> Bool) -> (S) -> [S.Element] {
   { xs in
     xs.sorted(by: areInIncreasingOrder)
