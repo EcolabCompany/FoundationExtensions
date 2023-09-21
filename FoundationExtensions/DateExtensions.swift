@@ -60,7 +60,17 @@ extension Date {
     public func toString(dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style) -> String {
         DateFormatter(dateStyle: dateStyle, timeStyle: timeStyle).string(from: self)
     }
-    
+
+  ///Returns a string representation of the date with the givin `NSDateFormatterStyle`.
+  /// - parameter dateStyle: The desired `NSDateFormatterStyle` to display the date as.
+  /// - parameter timeStyle: The desired `NSDateFormatterStyle` to display the time as.
+  /// - parameter timeZone: The desired `TimeZone` to display the date and time as. 
+  public func toString(dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style, timeZone: TimeZone) -> String {
+    let formatter = DateFormatter(dateStyle: dateStyle, timeStyle: timeStyle)
+    formatter.timeZone = timeZone
+    return formatter.string(from: self)
+  }
+
     
     ///Returns a string representation of the date with the givin dateFormat.
     /// - parameter dateFormat: The desired format to display the date as.
