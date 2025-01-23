@@ -1,12 +1,13 @@
-// swift-tools-version:5.3
+// swift-tools-version:6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
+
 let package = Package(
     name: "FoundationExtensions",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v17)
     ],
     products: [
         .library(
@@ -17,10 +18,14 @@ let package = Package(
         .target(
             name: "FoundationExtensions",
             dependencies: [],
-            path: "FoundationExtensions"),
+            path: "FoundationExtensions"
+        ),
         .testTarget(
             name: "FoundationExtensionsTests",
             dependencies: ["FoundationExtensions"],
             path: "FoundationExtensionsTests")
+    ],
+    swiftLanguageModes: [
+      .v6
     ]
 )
